@@ -12,10 +12,13 @@
 				Show Properties : <input type="checkbox" @bind-value="prod.IsActive" checked=@(prod.IsActive?"checked":null) />
 
 				@if(prod.IsActive)
-				{
-					@foreach (var prodProp in prod.ProductProperties)
+				{ 
 					{
-						<p>@prodProp.Key - @prodProp.Value</p>
+						@foreach(var prodProp in prod.ProductProperties )
+						{
+							<p>@prodProp.Key - @prodProp.Value</p>
+						}
+						
 					}
 				}
 				<br />
