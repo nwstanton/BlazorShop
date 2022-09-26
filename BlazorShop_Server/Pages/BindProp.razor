@@ -1,7 +1,24 @@
 ﻿@page "/learnBlazor/bindProp"
 
-<h3>BindProp</h3>
+<h3>Product</h3>
+Name: @Product.Name<br />
+Active: @Product.IsActive<br />
+Price: @Product.Price<br />
+This Product is: @(Product.IsActive?"Active":"Not Active")<br />
+
+<br />Active: <input type="checkbox" @bind-value="@Product.IsActive" checked="@(Product.IsActive?"checked":null)" /> <br />
+Price: <input type="number" @bind="@Product.Price" @bind:event="onInput" />
+
+
+
+
 
 @code {
-
+	Shop_Models.LearnBlazorModels.Demo_Products Product = new()
+	{
+		Id = 1,
+		Name = "Rose Candle",
+		IsActive = true,
+		Price = 10.99
+	};
 }
