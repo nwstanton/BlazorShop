@@ -1,0 +1,28 @@
+﻿@page "/learnBlazor/parentComponent"
+
+<h3>Parent Child Relation</h3>
+
+
+<BlazorShop_Server.Pages.LearnBlazorComponent._ChildComponent OnButtonClick="ShowMessage" Title="This is passed as a paramenter from the parent compnent">
+	<ChildContent> This is going to be rendered from within the actual fragment/child</ChildContent>
+	<DangerChildContent>Danger content from child component</DangerChildContent>
+</BlazorShop_Server.Pages.LearnBlazorComponent._ChildComponent>
+
+
+<p><b>@messageText</b></p>
+<BlazorShop_Server.Pages.LearnBlazorComponent._AnotherChildComponent placeholder="placeholder from parent">
+	
+</BlazorShop_Server.Pages.LearnBlazorComponent._AnotherChildComponent>
+
+@code {
+
+	
+
+	public string messageText { get; set; } = "";
+
+	private void ShowMessage()
+	{
+		messageText = "button clicked form child component";
+	}
+
+}
