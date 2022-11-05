@@ -5,7 +5,7 @@
 
 <CascadingValue Value="@MessageForGrandChild" Name="message">
 	<CascadingValue Value="@LuckyNumber" Name="luckyNumber">
-<BlazorShop_Server.Pages.LearnBlazorComponent._ChildComponent OnButtonClick="ShowMessage" Title="This is passed as a paramenter from the parent compnent">
+<BlazorShop_Server.Pages.LearnBlazorComponent._ChildComponent @ref="childComp" OnButtonClick="ShowMessage" Title="This is passed as a paramenter from the parent compnent">
 	
 	<ChildContent> This is going to be rendered from within the actual fragment/child</ChildContent>
 	<DangerChildContent>Danger content from child component</DangerChildContent>
@@ -18,7 +18,15 @@
 	
 </BlazorShop_Server.Pages.LearnBlazorComponent._AnotherChildComponent>
 
+<div class="row">
+	<button class="btn btn-success" @onclick="()=>childComp.ToasterSuccess()">Show SweetAlert</button>
+</div>
+
+
 @code {
+
+	private BlazorShop_Server.Pages.LearnBlazorComponent._ChildComponent childComp;
+
 	public string MessageForGrandChild = "this is from your parent (ParentComponent)";
 
 	public string LuckyNumber = "7";
