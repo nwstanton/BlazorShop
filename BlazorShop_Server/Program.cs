@@ -1,8 +1,11 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Shop_DataAccess.Data
+using Shop_DataAccess.Data;
 using BlazorShop_Server.Data;
+using Microsoft.EntityFrameworkCore;
+using Shop_Business.Repository;
+using Shop_Business.Repository.IRepository;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddDbContext<ApplicationDbContext>();
-
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

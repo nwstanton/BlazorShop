@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shop_DataAccess\Shop_DataAccess.csproj" />
+    <ProjectReference Include="..\Shop_Models\Shop_Models.csproj" />
+  </ItemGroup>
+
 </Project>
