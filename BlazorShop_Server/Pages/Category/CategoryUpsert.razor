@@ -8,7 +8,7 @@
 	<h3 class="card-title text-primary mb-3 ms-lg-3">@Title Category</h3>
 
 	<div class="col-10">
-		@if(IsLoadig)
+		@if(IsLoading)
 		{
 			<div class="text-center">
 				<img src="/images/loading.gif">
@@ -37,41 +37,50 @@
 	public int Id { get; set; } 
 	private CategoryDto Category { get; set; } = new CategoryDto();
 	private string Title { get; set; } = "Create";
-	public bool IsLoadig { get; set; } = true;
+	public bool IsLoading { get; set; } 
 
-	protected override async Task OnInitializedAsync()
+	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		if(Id == 0)
+		if (firstRender)
 		{
-			//create
-			IsLoadig = false;
+			if(Id == 0)
+			{
+				//create
+				IsLoading = false;
+			}
+			else
+			{
+				//update
+
+				Title = "Update";
+				LoadCategories();
+			}
 		}
-		else
-		{
-			//update
-			await Task.Run(LoadCategories);
-			Title = "Update";
-		}
+	}
+	
 		
-	}
+		
 
-	private void LoadCategories()
+	private async Task LoadCategories()
 	{
-		Category = _categoryRepository.Get(Id);
-		IsLoadig = false;
+		IsLoading = true;
+		StateHasChanged();
+		Category = await _categoryRepository.Get(Id);
+		IsLoading = false;
+		StateHasChanged();
 	}
 
-	private void UpsertCategory()
+	private async Task UpsertCategory()
 	{
 		if(Category.Id == 0)
 		{
 			//create
-			_categoryRepository.Create(Category);
+			await _categoryRepository.Create(Category);
 		}
 		else
 		{
 			//update
-			_categoryRepository.Update(Category);
+			await _categoryRepository.Update(Category);
 		}
 		_navigationManager.NavigateTo("category");
 		
