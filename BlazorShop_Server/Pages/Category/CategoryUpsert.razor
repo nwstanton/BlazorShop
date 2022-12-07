@@ -1,0 +1,79 @@
+﻿@page "/category/create"
+@page "/category/edit/{id:int}"
+
+@inject ICategoryRepository _categoryRepository
+@inject NavigationManager _navigationManager
+
+<div class="row my-2">
+	<h3 class="card-title text-primary mb-3 ms-lg-3">@Title Category</h3>
+
+	<div class="col-10">
+		@if(IsLoadig)
+		{
+			<div class="text-center">
+				<img src="/images/loading.gif">
+			</div>
+		}
+		else
+		{
+			<EditForm Model="Category" OnValidSubmit="UpsertCategory">
+				<DataAnnotationsValidator/>
+				<div class="form-group">
+					<label>Name</label>
+					<InputText @bind-Value="Category.Name" class="form-control"></InputText>
+					<ValidationMessage For="()=>Category.Name"></ValidationMessage>
+				</div>
+				<div class="form-group py-2">
+					<button class="btn btn-primary">@Title</button>
+					<NavLink href="category" class="btn btn-secondary">Back to Index</NavLink>
+				</div>
+			</EditForm>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public int Id { get; set; } 
+	private CategoryDto Category { get; set; } = new CategoryDto();
+	private string Title { get; set; } = "Create";
+	public bool IsLoadig { get; set; } = true;
+
+	protected override async Task OnInitializedAsync()
+	{
+		if(Id == 0)
+		{
+			//create
+			IsLoadig = false;
+		}
+		else
+		{
+			//update
+			await Task.Run(LoadCategories);
+			Title = "Update";
+		}
+		
+	}
+
+	private void LoadCategories()
+	{
+		Category = _categoryRepository.Get(Id);
+		IsLoadig = false;
+	}
+
+	private void UpsertCategory()
+	{
+		if(Category.Id == 0)
+		{
+			//create
+			_categoryRepository.Create(Category);
+		}
+		else
+		{
+			//update
+			_categoryRepository.Update(Category);
+		}
+		_navigationManager.NavigateTo("category");
+		
+	}
+}

@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop_Client", "Blazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop_Models", "Shop_Models\Shop_Models.csproj", "{A36F1056-1A15-40B2-942D-548C0A1CBC49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop_Business", "Shop_Business\Shop_Business.csproj", "{5DAC861C-17DB-4F22-B851-74E32DE0575B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop_Business", "Shop_Business\Shop_Business.csproj", "{5DAC861C-17DB-4F22-B851-74E32DE0575B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop_Common", "Shop_Common\Shop_Common.csproj", "{A601BC62-BE94-42CF-8B66-1B5C341B58C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop_Common", "Shop_Common\Shop_Common.csproj", "{A601BC62-BE94-42CF-8B66-1B5C341B58C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop_DataAccess", "Shop_DataAccess\Shop_DataAccess.csproj", "{115F2DFB-A0D7-4B98-9397-FF877049EAAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop_DataAccess", "Shop_DataAccess\Shop_DataAccess.csproj", "{115F2DFB-A0D7-4B98-9397-FF877049EAAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
