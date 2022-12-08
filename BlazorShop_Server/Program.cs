@@ -6,7 +6,8 @@ using BlazorShop_Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Shop_Business.Repository;
 using Shop_Business.Repository.IRepository;
-
+using BlazorShop_Server.Service.IService;
+using BlazorShop_Server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IFileUpload, FileUpload>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
